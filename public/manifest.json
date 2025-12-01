@@ -1,0 +1,16 @@
+{
+  "short_name": "DLH",
+  "name": "Deutsch Learner Hub - Learn German Online",
+  "icons": [
+    {
+      "src": "logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#0f172a",
+  "background_color": "#ffffff",
+  "description": "Learn German online with Deutsch Learner Hub. Professional courses from A1 to B2."
+}
