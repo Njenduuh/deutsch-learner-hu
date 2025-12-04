@@ -449,8 +449,8 @@ const DeutschLearnerHub = () => {
       e.preventDefault();
       setIsSubmitting(true);
 
-      // REPLACE 'YOUR_FORM_ID' with your actual Formspree form ID
-      const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+      // Replace with your actual Formspree form ID
+      const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mnnezdve';
 
       try {
         const response = await fetch(FORMSPREE_ENDPOINT, {
