@@ -557,8 +557,12 @@ const DeutschLearnerHub = () => {
           </div>
           
           <div className={`space-y-8 ${darkMode ? 'text-slate-300' : 'text-slate-600'} font-light leading-loose text-lg`}>
-            <p>This German programme was started with one goal: to make learning German easier for beginners.</p>
-            <p>We teach A1 to B2 German using step-by-step methods, live classes via Google Meet oder Zoom, and daily support through WhatsApp.</p>
+            <p>Our German language programme was founded with one clear mission: to make learning German simple, effective, and accessible for beginners and intermediate learners. We understand that learning a new language can feel challenging, especially at the beginning, which is why our courses are carefully designed to guide students step by step, from the basics to confident communication.</p>
+            <p>We offer structured German courses from A1 to B2, following a clear learning path that helps students develop strong foundations in grammar, vocabulary, speaking, listening, reading, and writing. Our teaching methods focus on practical usage, ensuring that students not only understand German but can also use it confidently in real-life situations.</p>
+            <p>All classes are conducted live online via Google Meet or Zoom, allowing students to interact directly with experienced instructors, ask questions in real time, and practice speaking in a supportive environment. Our live lessons are interactive, engaging, and suitable for learners from different backgrounds and time zones.</p>
+            <p>In addition to live classes, we provide daily support through WhatsApp, where students can ask questions, receive clarifications, practice short exercises, and stay motivated throughout their learning journey. This continuous support helps learners stay consistent and overcome difficulties quickly.</p>
+            <p>Our programme is ideal for students learning German for studies, work, relocation, or personal development. We focus on clear explanations, consistent practice, and learner-centered teaching to ensure real progress at every level.</p>
+            <p>At our core, we believe that anyone can learn German with the right guidance, structure, and support. We are committed to helping our students achieve their language goals with confidence and success.</p>
           </div>
         </div>
       </section>
