@@ -1,6 +1,205 @@
 import React, { useState } from 'react';
 import { BookOpen, Users, MessageCircle, Award, Clock, Target, CheckCircle, Mail, Phone, MessageSquare, ArrowRight, Menu, X, Moon, Sun, ChevronUp, Globe, Video } from 'lucide-react';
 
+const ContactPage = ({ darkMode, formData, setFormData }) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async () => {
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('https://formspree.io/f/mnnezdve', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          whatsapp: formData.whatsapp,
+          message: formData.message
+        })
+      });
+
+      if (response.ok) {
+        alert('Thank you! We will contact you soon via WhatsApp.');
+        setFormData({ name: '', email: '', whatsapp: '', message: '' });
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Oops! Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="pt-20 relative">
+      <div className={`fixed inset-0 -z-10 ${
+        darkMode 
+          ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900' 
+          : 'bg-gradient-to-br from-amber-50/30 via-white to-red-50/20'
+      }`}></div>
+
+      <section className="py-32 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-20">
+            <h1 className={`text-6xl font-extralight ${darkMode ? 'text-white' : 'text-slate-900'} mb-6 tracking-tighter`}>Get In Touch</h1>
+            <p className={`${darkMode ? 'text-slate-400' : 'text-slate-500'} font-light`}>
+              Ready to begin your German learning journey?
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12">
+            <div className={`rounded-3xl backdrop-blur-lg border shadow-2xl p-10 ${
+              darkMode 
+                ? 'bg-slate-800/40 border-slate-700/50' 
+                : 'bg-white/60 border-white/40'
+            }`}>
+              <h2 className={`text-2xl font-medium mb-10 ${darkMode ? 'text-white' : 'text-slate-900'}`}>Send a Message</h2>
+              <div className="space-y-6">
+                <div>
+                  <label className={`block text-sm font-light ${darkMode ? 'text-slate-400' : 'text-slate-600'} mb-2`}>Name</label>
+                  <input
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
+                    className={`w-full px-5 py-3.5 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/50 font-light backdrop-blur-sm transition-all ${
+                      darkMode 
+                        ? 'border-slate-700/50 bg-slate-900/50 text-white' 
+                        : 'border-slate-200/50 bg-white/50 text-slate-800'
+                    }`}
+                    placeholder="Your name"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className={`block text-sm font-light ${darkMode ? 'text-slate-400' : 'text-slate-600'} mb-2`}>Email</label>
+                  <input
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
+                    className={`w-full px-5 py-3.5 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/50 font-light backdrop-blur-sm transition-all ${
+                      darkMode 
+                        ? 'border-slate-700/50 bg-slate-900/50 text-white' 
+                        : 'border-slate-200/50 bg-white/50 text-slate-800'
+                    }`}
+                    placeholder="your.email@example.com"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className={`block text-sm font-light ${darkMode ? 'text-slate-400' : 'text-slate-600'} mb-2`}>WhatsApp</label>
+                  <input
+                    type="tel"
+                    value={formData.whatsapp}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, whatsapp: e.target.value }))}
+                    className={`w-full px-5 py-3.5 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/50 font-light backdrop-blur-sm transition-all ${
+                      darkMode 
+                        ? 'border-slate-700/50 bg-slate-900/50 text-white' 
+                        : 'border-slate-200/50 bg-white/50 text-slate-800'
+                    }`}
+                    placeholder="+254 740 891 695"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className={`block text-sm font-light ${darkMode ? 'text-slate-400' : 'text-slate-600'} mb-2`}>Message</label>
+                  <textarea
+                    rows="4"
+                    value={formData.message}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, message: e.target.value }))}
+                    className={`w-full px-5 py-3.5 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/50 font-light backdrop-blur-sm resize-none transition-all ${
+                      darkMode 
+                        ? 'border-slate-700/50 bg-slate-900/50 text-white' 
+                        : 'border-slate-200/50 bg-white/50 text-slate-800'
+                    }`}
+                    placeholder="Your learning goals..."
+                    required
+                  ></textarea>
+                </div>
+                <button
+                  onClick={handleSubmit}
+                  disabled={isSubmitting}
+                  className="w-full bg-gradient-to-r from-amber-500 via-red-500 to-amber-600 hover:from-amber-600 hover:via-red-600 hover:to-amber-700 text-white font-medium py-4 rounded-xl transition-all shadow-xl disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105"
+                >
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                </button>
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <div className={`rounded-3xl p-10 backdrop-blur-lg border shadow-2xl ${
+                darkMode 
+                  ? 'bg-gradient-to-br from-slate-800/60 to-slate-900/60 border-slate-700/50' 
+                  : 'bg-gradient-to-br from-amber-50/80 to-red-50/80 border-white/40'
+              }`}>
+                <h2 className={`text-2xl font-medium mb-8 ${darkMode ? 'text-white' : 'text-slate-900'}`}>Contact Details</h2>
+                <div className="space-y-6">
+                  <div className="flex items-start space-x-4">
+                    <MessageSquare className={`w-5 h-5 mt-1 ${darkMode ? 'text-amber-400' : 'text-amber-600'}`} strokeWidth={1.5} />
+                    <div>
+                      <p className={`font-light text-sm mb-1 ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>WhatsApp</p>
+                      <p className={`font-light ${darkMode ? 'text-white' : 'text-slate-900'}`}>+254 740 891 695</p>
+                      <p className={`font-light mt-1 ${darkMode ? 'text-white' : 'text-slate-900'}`}>+254 701 483 998</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <Mail className={`w-5 h-5 mt-1 ${darkMode ? 'text-amber-400' : 'text-amber-600'}`} strokeWidth={1.5} />
+                    <div>
+                      <p className={`font-light text-sm mb-1 ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>Email</p>
+                      <p className={`font-light ${darkMode ? 'text-white' : 'text-slate-900'}`}>deutschlhub12@gmail.com</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <Phone className={`w-5 h-5 mt-1 ${darkMode ? 'text-amber-400' : 'text-amber-600'}`} strokeWidth={1.5} />
+                    <div>
+                      <p className={`font-light text-sm mb-1 ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>Phone</p>
+                      <p className={`font-light ${darkMode ? 'text-white' : 'text-slate-900'}`}>+254 740 891 695</p>
+                      <p className={`font-light mt-1 ${darkMode ? 'text-white' : 'text-slate-900'}`}>+254 701 483 998</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className={`rounded-3xl p-10 backdrop-blur-lg border shadow-2xl ${
+                darkMode 
+                  ? 'bg-slate-800/40 border-slate-700/50' 
+                  : 'bg-white/60 border-white/40'
+              }`}>
+                <h3 className={`text-xl font-medium mb-4 ${darkMode ? 'text-white' : 'text-slate-900'}`}>Quick Response</h3>
+                <p className={`text-sm font-light mb-6 leading-relaxed ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                  We respond within 24 hours. For immediate help, reach us on WhatsApp.
+                </p>
+                <div className="space-y-3">
+                  <a
+                    href="https://wa.me/254740891695"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-medium px-6 py-3 rounded-full transition-all shadow-lg w-full justify-center hover:scale-105"
+                  >
+                    <MessageSquare size={18} strokeWidth={1.5} />
+                    <span>WhatsApp: +254 740 891 695</span>
+                  </a>
+                  <a
+                    href="https://wa.me/254701483998"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-medium px-6 py-3 rounded-full transition-all shadow-lg w-full justify-center hover:scale-105"
+                  >
+                    <MessageSquare size={18} strokeWidth={1.5} />
+                    <span>WhatsApp: +254 701 483 998</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
 const DeutschLearnerHub = () => {
   const [activePage, setActivePage] = useState('home');
   const [formData, setFormData] = useState({ name: '', email: '', whatsapp: '', message: '' });
@@ -38,7 +237,7 @@ const DeutschLearnerHub = () => {
               />
             </div>
             <span className={`text-sm sm:text-lg font-light ${darkMode ? 'text-white' : 'text-slate-900'} tracking-wide`}>
-              Deutsch Learners Hub
+              DLH Global Academy
             </span>
           </div>
           
@@ -120,7 +319,7 @@ const DeutschLearnerHub = () => {
           <div className="w-full h-1/3 bg-yellow-400"></div>
         </div>
         <div className="absolute -top-12 right-0 bg-slate-900/90 backdrop-blur-md text-white px-3 py-1.5 rounded-lg text-xs font-light whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-xl">
-          Deutsch Learners Hub
+          DLH Global Academy
         </div>
       </div>
     </div>
@@ -207,11 +406,11 @@ const DeutschLearnerHub = () => {
                   <div className="w-64 h-64 mx-auto mb-6 flex items-center justify-center">
                     <img 
                       src="/logo.jpg" 
-                      alt="Deutsch Learners Hub Logo" 
+                      alt="DLH Global Academy Logo" 
                       className="w-full h-full object-contain drop-shadow-2xl"
                     />
                   </div>
-                  <h3 className={`text-2xl font-serif ${darkMode ? 'text-slate-200' : 'text-slate-800'} mb-2`}>Deutsch Learners Hub</h3>
+                  <h3 className={`text-2xl font-serif ${darkMode ? 'text-slate-200' : 'text-slate-800'} mb-2`}>DLH Global Academy</h3>
                   <p className={`text-sm font-light ${darkMode ? 'text-slate-400' : 'text-slate-500'} tracking-wide`}>Excellence in German Education</p>
                 </div>
               </div>
@@ -375,35 +574,43 @@ const DeutschLearnerHub = () => {
       { 
         level: 'A1', 
         title: 'Beginner I', 
-        ksh: '11,000', 
-        usd: '95',
+        ksh: '15,000', 
+        usd: '130',
         color: 'from-emerald-400 to-emerald-600',
         features: ['Basic vocabulary', 'Simple conversations', 'Present tense', 'Self-introduction']
       },
       { 
         level: 'A2', 
         title: 'Beginner II', 
-        ksh: '12,000', 
-        usd: '105',
+        ksh: '18,000', 
+        usd: '155',
         color: 'from-green-400 to-green-600',
         features: ['Expanded vocabulary', 'Past tense', 'Daily routines', 'Shopping & travel']
       },
       { 
         level: 'B1', 
         title: 'Intermediate I', 
-        ksh: '16,000', 
-        usd: '135',
+        ksh: '25,000', 
+        usd: '216',
         color: 'from-blue-400 to-blue-600',
         features: ['Complex grammar', 'Opinion expression', 'Work vocabulary', 'Longer texts']
       },
       { 
         level: 'B2', 
         title: 'Intermediate II', 
-        ksh: '18,000', 
-        usd: '145',
+        ksh: '30,000', 
+        usd: '259',
         color: 'from-indigo-400 to-indigo-600',
         features: ['Advanced fluency', 'Professional German', 'Exam preparation', 'Academic writing'],
         popular: true
+      },
+      { 
+        level: 'C1', 
+        title: 'Advanced', 
+        ksh: '35,000', 
+        usd: '302',
+        color: 'from-purple-400 to-purple-600',
+        features: ['Advanced fluency', 'Professional writing', 'Presentation skills', 'Academic discourse']
       }
     ];
 
@@ -465,7 +672,7 @@ const DeutschLearnerHub = () => {
               </div>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 mb-16">
               {pricingData.map((item, idx) => (
                 <div 
                   key={idx} 
@@ -562,205 +769,6 @@ const DeutschLearnerHub = () => {
 
 // ========== PART 3 OF 3 ==========
 
-  const ContactPage = () => {
-    const [isSubmitting, setIsSubmitting] = useState(false);
-
-    const handleSubmit = async () => {
-      setIsSubmitting(true);
-
-      try {
-        const response = await fetch('https://formspree.io/f/mnnezdve', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: formData.name,
-            email: formData.email,
-            whatsapp: formData.whatsapp,
-            message: formData.message
-          })
-        });
-
-        if (response.ok) {
-          alert('Thank you! We will contact you soon via WhatsApp.');
-          setFormData({ name: '', email: '', whatsapp: '', message: '' });
-        } else {
-          throw new Error('Form submission failed');
-        }
-      } catch (error) {
-        console.error('Error:', error);
-        alert('Oops! Something went wrong. Please try again.');
-      } finally {
-        setIsSubmitting(false);
-      }
-    };
-
-    return (
-      <div className="pt-20 relative">
-        <div className={`fixed inset-0 -z-10 ${
-          darkMode 
-            ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900' 
-            : 'bg-gradient-to-br from-amber-50/30 via-white to-red-50/20'
-        }`}></div>
-
-        <section className="py-32 px-6">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-20">
-              <h1 className={`text-6xl font-extralight ${darkMode ? 'text-white' : 'text-slate-900'} mb-6 tracking-tighter`}>Get In Touch</h1>
-              <p className={`${darkMode ? 'text-slate-400' : 'text-slate-500'} font-light`}>
-                Ready to begin your German learning journey?
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-12">
-              <div className={`rounded-3xl backdrop-blur-lg border shadow-2xl p-10 ${
-                darkMode 
-                  ? 'bg-slate-800/40 border-slate-700/50' 
-                  : 'bg-white/60 border-white/40'
-              }`}>
-                <h2 className={`text-2xl font-medium mb-10 ${darkMode ? 'text-white' : 'text-slate-900'}`}>Send a Message</h2>
-                <div className="space-y-6">
-                  <div>
-                    <label className={`block text-sm font-light ${darkMode ? 'text-slate-400' : 'text-slate-600'} mb-2`}>Name</label>
-                    <input
-                      type="text"
-                      value={formData.name}
-                      onChange={(e) => setFormData({...formData, name: e.target.value})}
-                      className={`w-full px-5 py-3.5 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/50 font-light backdrop-blur-sm transition-all ${
-                        darkMode 
-                          ? 'border-slate-700/50 bg-slate-900/50 text-white' 
-                          : 'border-slate-200/50 bg-white/50 text-slate-800'
-                      }`}
-                      placeholder="Your name"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className={`block text-sm font-light ${darkMode ? 'text-slate-400' : 'text-slate-600'} mb-2`}>Email</label>
-                    <input
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({...formData, email: e.target.value})}
-                      className={`w-full px-5 py-3.5 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/50 font-light backdrop-blur-sm transition-all ${
-                        darkMode 
-                          ? 'border-slate-700/50 bg-slate-900/50 text-white' 
-                          : 'border-slate-200/50 bg-white/50 text-slate-800'
-                      }`}
-                      placeholder="your.email@example.com"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className={`block text-sm font-light ${darkMode ? 'text-slate-400' : 'text-slate-600'} mb-2`}>WhatsApp</label>
-                    <input
-                      type="tel"
-                      value={formData.whatsapp}
-                      onChange={(e) => setFormData({...formData, whatsapp: e.target.value})}
-                      className={`w-full px-5 py-3.5 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/50 font-light backdrop-blur-sm transition-all ${
-                        darkMode 
-                          ? 'border-slate-700/50 bg-slate-900/50 text-white' 
-                          : 'border-slate-200/50 bg-white/50 text-slate-800'
-                      }`}
-                      placeholder="+254 740 891 695"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className={`block text-sm font-light ${darkMode ? 'text-slate-400' : 'text-slate-600'} mb-2`}>Message</label>
-                    <textarea
-                      rows="4"
-                      value={formData.message}
-                      onChange={(e) => setFormData({...formData, message: e.target.value})}
-                      className={`w-full px-5 py-3.5 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/50 font-light backdrop-blur-sm resize-none transition-all ${
-                        darkMode 
-                          ? 'border-slate-700/50 bg-slate-900/50 text-white' 
-                          : 'border-slate-200/50 bg-white/50 text-slate-800'
-                      }`}
-                      placeholder="Your learning goals..."
-                      required
-                    ></textarea>
-                  </div>
-                  <button
-                    onClick={handleSubmit}
-                    disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-amber-500 via-red-500 to-amber-600 hover:from-amber-600 hover:via-red-600 hover:to-amber-700 text-white font-medium py-4 rounded-xl transition-all shadow-xl disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105"
-                  >
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
-                  </button>
-                </div>
-              </div>
-
-              <div className="space-y-6">
-                <div className={`rounded-3xl p-10 backdrop-blur-lg border shadow-2xl ${
-                  darkMode 
-                    ? 'bg-gradient-to-br from-slate-800/60 to-slate-900/60 border-slate-700/50' 
-                    : 'bg-gradient-to-br from-amber-50/80 to-red-50/80 border-white/40'
-                }`}>
-                  <h2 className={`text-2xl font-medium mb-8 ${darkMode ? 'text-white' : 'text-slate-900'}`}>Contact Details</h2>
-                  <div className="space-y-6">
-                    <div className="flex items-start space-x-4">
-                      <MessageSquare className={`w-5 h-5 mt-1 ${darkMode ? 'text-amber-400' : 'text-amber-600'}`} strokeWidth={1.5} />
-                      <div>
-                        <p className={`font-light text-sm mb-1 ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>WhatsApp</p>
-                        <p className={`font-light ${darkMode ? 'text-white' : 'text-slate-900'}`}>+254 740 891 695</p>
-                        <p className={`font-light mt-1 ${darkMode ? 'text-white' : 'text-slate-900'}`}>+254 701 483 998</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start space-x-4">
-                      <Mail className={`w-5 h-5 mt-1 ${darkMode ? 'text-amber-400' : 'text-amber-600'}`} strokeWidth={1.5} />
-                      <div>
-                        <p className={`font-light text-sm mb-1 ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>Email</p>
-                        <p className={`font-light ${darkMode ? 'text-white' : 'text-slate-900'}`}>deutschlhub12@gmail.com</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start space-x-4">
-                      <Phone className={`w-5 h-5 mt-1 ${darkMode ? 'text-amber-400' : 'text-amber-600'}`} strokeWidth={1.5} />
-                      <div>
-                        <p className={`font-light text-sm mb-1 ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>Phone</p>
-                        <p className={`font-light ${darkMode ? 'text-white' : 'text-slate-900'}`}>+254 740 891 695</p>
-                        <p className={`font-light mt-1 ${darkMode ? 'text-white' : 'text-slate-900'}`}>+254 701 483 998</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className={`rounded-3xl p-10 backdrop-blur-lg border shadow-2xl ${
-                  darkMode 
-                    ? 'bg-slate-800/40 border-slate-700/50' 
-                    : 'bg-white/60 border-white/40'
-                }`}>
-                  <h3 className={`text-xl font-medium mb-4 ${darkMode ? 'text-white' : 'text-slate-900'}`}>Quick Response</h3>
-                  <p className={`text-sm font-light mb-6 leading-relaxed ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                    We respond within 24 hours. For immediate help, reach us on WhatsApp.
-                  </p>
-                  <div className="space-y-3">
-                    <a
-                      href="https://wa.me/254740891695"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center space-x-2 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-medium px-6 py-3 rounded-full transition-all shadow-lg w-full justify-center hover:scale-105"
-                    >
-                      <MessageSquare size={18} strokeWidth={1.5} />
-                      <span>WhatsApp: +254 740 891 695</span>
-                    </a>
-                    <a
-                      href="https://wa.me/254701483998"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center space-x-2 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-medium px-6 py-3 rounded-full transition-all shadow-lg w-full justify-center hover:scale-105"
-                    >
-                      <MessageSquare size={18} strokeWidth={1.5} />
-                      <span>WhatsApp: +254 701 483 998</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-    );
-  };
-
   return (
     <div className={`min-h-screen transition-all duration-500 ${
       darkMode ? 'bg-slate-900' : 'bg-white'
@@ -770,7 +778,9 @@ const DeutschLearnerHub = () => {
       {activePage === 'courses' && <CoursesPage />}
       {activePage === 'about' && <AboutPage />}
       {activePage === 'pricing' && <PricingPage />}
-      {activePage === 'contact' && <ContactPage />}
+      {activePage === 'contact' && (
+        <ContactPage darkMode={darkMode} formData={formData} setFormData={setFormData} />
+      )}
       <GermanFlagIcon />
 
       {showScrollTop && (
@@ -793,7 +803,7 @@ const DeutschLearnerHub = () => {
       }`}>
         <div className="max-w-6xl mx-auto px-6 text-center">
           <p className={`text-sm font-light ${darkMode ? 'text-slate-500' : 'text-slate-400'}`}>
-            © 2025 Deutsch Learners Hub
+            © 2025 DLH Global Academy
           </p>
           <p className={`text-sm font-light ${darkMode ? 'text-slate-500' : 'text-slate-400'} mt-2`}>
             Making German accessible for everyone
