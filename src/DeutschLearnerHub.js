@@ -493,7 +493,7 @@ const DeutschLearnerHub = () => {
             </div>
             <h1 className={`text-6xl font-extralight ${darkMode ? 'text-white' : 'text-slate-900'} mb-6 tracking-tighter`}>Our Courses</h1>
             <p className={`${darkMode ? 'text-slate-400' : 'text-slate-500'} font-light leading-relaxed`}>
-              Complete German language programme
+              A clear roadmap from A1 to C1 proficiency
             </p>
           </div>
 
@@ -504,9 +504,22 @@ const DeutschLearnerHub = () => {
           }`}>
             <div className="bg-gradient-to-r from-amber-500 via-red-500 to-amber-600 p-2">
               <div className={`${darkMode ? 'bg-slate-800/90' : 'bg-white/90'} backdrop-blur-xl rounded-2xl p-12 md:p-16`}>
-                <h2 className={`text-5xl font-extralight ${darkMode ? 'text-white' : 'text-slate-900'} mb-8`}>A1 — B2 Complete</h2>
+                <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between mb-10">
+                  <div>
+                    <h2 className={`text-5xl font-extralight ${darkMode ? 'text-white' : 'text-slate-900'} mb-3`}>A1 — C1 Roadmap</h2>
+                    <p className={`${darkMode ? 'text-slate-300' : 'text-slate-600'} font-light`}>
+                      Follow a structured progression with clear outcomes at every level.
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setActivePage('contact')}
+                    className="bg-gradient-to-r from-amber-500 via-red-500 to-amber-600 hover:from-amber-600 hover:via-red-600 hover:to-amber-700 text-white font-medium px-8 py-4 rounded-full transition-all shadow-xl hover:scale-105"
+                  >
+                    Enroll Now
+                  </button>
+                </div>
 
-                <div className={`mb-12 p-6 rounded-xl backdrop-blur-lg border ${
+                <div className={`mb-10 p-6 rounded-xl backdrop-blur-lg border ${
                   darkMode 
                     ? 'bg-white/5 border-white/10' 
                     : 'bg-slate-50/60 border-slate-200/40'
@@ -527,12 +540,65 @@ const DeutschLearnerHub = () => {
                   </div>
                 </div>
 
-                <button
-                  onClick={() => setActivePage('contact')}
-                  className="bg-gradient-to-r from-amber-500 via-red-500 to-amber-600 hover:from-amber-600 hover:via-red-600 hover:to-amber-700 text-white font-medium px-8 py-4 rounded-full transition-all shadow-xl hover:scale-105"
-                >
-                  Enroll Now
-                </button>
+                <div className="grid gap-6 md:grid-cols-2">
+                  {[
+                    {
+                      level: 'A1',
+                      title: 'Starter Foundations',
+                      focus: 'Alphabet, greetings, introductions',
+                      outcome: 'Communicate basic personal info and daily needs.'
+                    },
+                    {
+                      level: 'A2',
+                      title: 'Everyday Communication',
+                      focus: 'Routines, travel, shopping, past tense',
+                      outcome: 'Handle simple conversations in familiar situations.'
+                    },
+                    {
+                      level: 'B1',
+                      title: 'Independent Speaker',
+                      focus: 'Opinions, work topics, longer texts',
+                      outcome: 'Discuss experiences and plans with confidence.'
+                    },
+                    {
+                      level: 'B2',
+                      title: 'Upper Intermediate',
+                      focus: 'Complex grammar, professional contexts',
+                      outcome: 'Interact fluently in academic or workplace settings.'
+                    },
+                    {
+                      level: 'C1',
+                      title: 'Advanced Mastery',
+                      focus: 'Presentations, formal writing, nuance',
+                      outcome: 'Express ideas precisely in advanced discussions.'
+                    }
+                  ].map((stage, idx) => (
+                    <div
+                      key={stage.level}
+                      className={`relative rounded-2xl border p-6 transition-all hover:shadow-xl ${
+                        darkMode 
+                          ? 'bg-slate-900/40 border-slate-700/50' 
+                          : 'bg-white/80 border-slate-200/60'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-4">
+                        <span className={`text-xs uppercase tracking-widest ${darkMode ? 'text-amber-300' : 'text-amber-600'}`}>
+                          Level {stage.level}
+                        </span>
+                        <span className={`text-xs font-light ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>
+                          Step {idx + 1}
+                        </span>
+                      </div>
+                      <h3 className={`text-xl font-medium ${darkMode ? 'text-white' : 'text-slate-900'} mb-2`}>{stage.title}</h3>
+                      <p className={`text-sm font-light ${darkMode ? 'text-slate-300' : 'text-slate-600'} mb-3`}>
+                        <span className="font-medium">Focus:</span> {stage.focus}
+                      </p>
+                      <p className={`text-sm font-light ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>
+                        <span className="font-medium">Outcome:</span> {stage.outcome}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
