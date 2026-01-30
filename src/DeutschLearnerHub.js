@@ -344,22 +344,21 @@ const DeutschLearnerHub = () => {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div>
-              <h1 className={`text-5xl md:text-6xl lg:text-7xl font-serif ${darkMode ? 'text-white' : 'text-slate-900'} mb-8 leading-tight`}>
-                Learn German Online
-                <span className="block mt-2 bg-gradient-to-r from-amber-500 to-red-500 bg-clip-text text-transparent">— Now</span>
-                <span className="block bg-gradient-to-r from-red-500 to-amber-500 bg-clip-text text-transparent">— Anytime</span>
-                <span className="block bg-gradient-to-r from-amber-500 to-yellow-500 bg-clip-text text-transparent">— From Anywhere</span>
+              <h1 className={`text-5xl md:text-6xl lg:text-7xl font-serif ${darkMode ? 'text-white' : 'text-slate-900'} mb-8 leading-tight fade-in-up`}>
+                Welcome to DLH Global Academy
               </h1>
               
-              <div className={`space-y-6 text-lg font-light ${darkMode ? 'text-slate-300' : 'text-slate-600'} leading-relaxed`}>
+              <div className={`space-y-6 text-lg font-light ${darkMode ? 'text-slate-300' : 'text-slate-600'} leading-relaxed fade-in-up delay-1`}>
                 <p className={`text-xl ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>
-                  Welcome to our page for online German lessons!
+                  DLH Global Academy is a fully online, global German learning platform you can join from anywhere in the world.
                 </p>
-                <p>Would you like to learn German? Do you need German for your job, for your studies or for your visit in Germany? Then you are right here!</p>
-                <p>We will accompany you in all learning phases and support you in using the German language in conversation.</p>
+                <p>We offer complete German courses, Prüfungstraining, and focused skill classes in Lesen (Reading), Hören (Listening), Schreiben (Writing), and Sprechen (Speaking). Our learning approach allows you to study individually while still interacting with other students, helping you build confidence, fluency, and real communication skills.</p>
+                <p>Beyond language learning, we provide visa interview preparation, including practical guidance on how to confidently answer Embassy interview questions. We also support students in choosing the right Ausbildung programme based on their goals, background, and future plans.</p>
+                <p>With DLH Global Academy, all your German learning needs are brought together in one complete package — language training, exam preparation, and real-world guidance.</p>
+                <p>This is DLH Global Academy. Apply now and start your German journey today.</p>
               </div>
 
-              <div className={`mt-8 p-6 rounded-2xl backdrop-blur-lg border ${
+              <div className={`mt-8 p-6 rounded-2xl backdrop-blur-lg border fade-in-up delay-2 ${
                 darkMode 
                   ? 'bg-white/5 border-white/10 shadow-xl' 
                   : 'bg-white/60 border-white/40 shadow-2xl'
@@ -494,7 +493,7 @@ const DeutschLearnerHub = () => {
             </div>
             <h1 className={`text-6xl font-extralight ${darkMode ? 'text-white' : 'text-slate-900'} mb-6 tracking-tighter`}>Our Courses</h1>
             <p className={`${darkMode ? 'text-slate-400' : 'text-slate-500'} font-light leading-relaxed`}>
-              Complete German language programme
+              A clear roadmap from A1 to C1 proficiency
             </p>
           </div>
 
@@ -505,9 +504,22 @@ const DeutschLearnerHub = () => {
           }`}>
             <div className="bg-gradient-to-r from-amber-500 via-red-500 to-amber-600 p-2">
               <div className={`${darkMode ? 'bg-slate-800/90' : 'bg-white/90'} backdrop-blur-xl rounded-2xl p-12 md:p-16`}>
-                <h2 className={`text-5xl font-extralight ${darkMode ? 'text-white' : 'text-slate-900'} mb-8`}>A1 — B2 Complete</h2>
+                <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between mb-10">
+                  <div>
+                    <h2 className={`text-5xl font-extralight ${darkMode ? 'text-white' : 'text-slate-900'} mb-3`}>A1 — C1 Roadmap</h2>
+                    <p className={`${darkMode ? 'text-slate-300' : 'text-slate-600'} font-light`}>
+                      Follow a structured progression with clear outcomes at every level.
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setActivePage('contact')}
+                    className="bg-gradient-to-r from-amber-500 via-red-500 to-amber-600 hover:from-amber-600 hover:via-red-600 hover:to-amber-700 text-white font-medium px-8 py-4 rounded-full transition-all shadow-xl hover:scale-105"
+                  >
+                    Enroll Now
+                  </button>
+                </div>
 
-                <div className={`mb-12 p-6 rounded-xl backdrop-blur-lg border ${
+                <div className={`mb-10 p-6 rounded-xl backdrop-blur-lg border ${
                   darkMode 
                     ? 'bg-white/5 border-white/10' 
                     : 'bg-slate-50/60 border-slate-200/40'
@@ -528,12 +540,65 @@ const DeutschLearnerHub = () => {
                   </div>
                 </div>
 
-                <button
-                  onClick={() => setActivePage('contact')}
-                  className="bg-gradient-to-r from-amber-500 via-red-500 to-amber-600 hover:from-amber-600 hover:via-red-600 hover:to-amber-700 text-white font-medium px-8 py-4 rounded-full transition-all shadow-xl hover:scale-105"
-                >
-                  Enroll Now
-                </button>
+                <div className="grid gap-6 md:grid-cols-2">
+                  {[
+                    {
+                      level: 'A1',
+                      title: 'Starter Foundations',
+                      focus: 'Alphabet, greetings, introductions',
+                      outcome: 'Communicate basic personal info and daily needs.'
+                    },
+                    {
+                      level: 'A2',
+                      title: 'Everyday Communication',
+                      focus: 'Routines, travel, shopping, past tense',
+                      outcome: 'Handle simple conversations in familiar situations.'
+                    },
+                    {
+                      level: 'B1',
+                      title: 'Independent Speaker',
+                      focus: 'Opinions, work topics, longer texts',
+                      outcome: 'Discuss experiences and plans with confidence.'
+                    },
+                    {
+                      level: 'B2',
+                      title: 'Upper Intermediate',
+                      focus: 'Complex grammar, professional contexts',
+                      outcome: 'Interact fluently in academic or workplace settings.'
+                    },
+                    {
+                      level: 'C1',
+                      title: 'Advanced Mastery',
+                      focus: 'Presentations, formal writing, nuance',
+                      outcome: 'Express ideas precisely in advanced discussions.'
+                    }
+                  ].map((stage, idx) => (
+                    <div
+                      key={stage.level}
+                      className={`relative rounded-2xl border p-6 transition-all hover:shadow-xl ${
+                        darkMode 
+                          ? 'bg-slate-900/40 border-slate-700/50' 
+                          : 'bg-white/80 border-slate-200/60'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-4">
+                        <span className={`text-xs uppercase tracking-widest ${darkMode ? 'text-amber-300' : 'text-amber-600'}`}>
+                          Level {stage.level}
+                        </span>
+                        <span className={`text-xs font-light ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>
+                          Step {idx + 1}
+                        </span>
+                      </div>
+                      <h3 className={`text-xl font-medium ${darkMode ? 'text-white' : 'text-slate-900'} mb-2`}>{stage.title}</h3>
+                      <p className={`text-sm font-light ${darkMode ? 'text-slate-300' : 'text-slate-600'} mb-3`}>
+                        <span className="font-medium">Focus:</span> {stage.focus}
+                      </p>
+                      <p className={`text-sm font-light ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>
+                        <span className="font-medium">Outcome:</span> {stage.outcome}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
