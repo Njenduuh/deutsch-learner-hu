@@ -40,7 +40,7 @@ const translations = {
       statsNote: 'Flexible schedules across time zones',
       cohort: {
         label: 'Next Cohort',
-        title: 'Enroll for October',
+        title: 'Enroll every month',
         items: [
           'Small groups with expert instructors.',
           'Daily WhatsApp support and check-ins.',
@@ -261,7 +261,7 @@ const translations = {
       statsNote: 'Flexible Zeiten in allen Zeitzonen',
       cohort: {
         label: 'Nächste Gruppe',
-        title: 'Anmeldung für Oktober',
+        title: 'Anmeldung jeden Monat',
         items: [
           'Kleine Gruppen mit Expert:innen.',
           'Tägliche WhatsApp-Betreuung.',
@@ -482,7 +482,7 @@ const translations = {
       statsNote: 'Horaires flexibles selon les fuseaux horaires',
       cohort: {
         label: 'Prochaine cohorte',
-        title: 'Inscription pour octobre',
+        title: 'Inscriptions chaque mois',
         items: [
           'Petits groupes avec des experts.',
           'Support WhatsApp quotidien.',
@@ -1089,29 +1089,25 @@ const DeutschLearnerHub = () => {
                   : 'bg-white/70 border-white/40 text-amber-700'
               }`}>
                 <Globe className="w-4 h-4" />
-                <span>Online German Academy</span>
+                <span>{copy.home.badge}</span>
               </div>
               <h1 className={`text-5xl md:text-6xl lg:text-7xl font-serif ${darkMode ? 'text-white' : 'text-slate-900'} mb-8 leading-tight fade-in-up`}>
-                Learn German with live classes, real guidance, and global support.
+                {copy.home.title}
               </h1>
               
               <div className={`space-y-6 text-lg font-light ${darkMode ? 'text-slate-300' : 'text-slate-600'} leading-relaxed fade-in-up delay-1`}>
                 <p className={`text-xl ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>
-                  DLH Global Academy is a fully online German learning platform you can join from anywhere in the world.
+                  {copy.home.introLead}
                 </p>
-                <p>Join complete German courses, intensive Prüfungstraining, and focused skills classes in Lesen, Hören, Schreiben, and Sprechen. Learn at your pace while staying connected with live instruction and community accountability.</p>
-                <p>Go beyond language learning with visa interview preparation, embassy Q&amp;A practice, and tailored support for selecting the right Ausbildung programme for your future.</p>
+                {copy.home.introParagraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
               </div>
 
               <div className={`mt-8 grid gap-4 sm:grid-cols-2 text-sm font-light fade-in-up delay-1 ${
                 darkMode ? 'text-slate-300' : 'text-slate-600'
               }`}>
-                {[
-                  'Live instructor feedback every session',
-                  'Exam-ready resources and mock tests',
-                  'Visa interview preparation & coaching',
-                  'Career-guided Ausbildung planning'
-                ].map((item) => (
+                {copy.home.highlights.map((item) => (
                   <div key={item} className="flex items-start space-x-3">
                     <CheckCircle className={`w-5 h-5 mt-0.5 ${darkMode ? 'text-amber-400' : 'text-amber-600'}`} />
                     <span>{item}</span>
@@ -1161,28 +1157,9 @@ const DeutschLearnerHub = () => {
                       : 'border-slate-300 text-slate-700 hover:bg-white'
                   }`}
                 >
-                  <span>View Courses</span>
+                  <span>{copy.home.secondaryCta}</span>
                   <BookOpen size={18} strokeWidth={1.8} />
                 </button>
-              </div>
-
-              <div className={`mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 text-center ${
-                darkMode ? 'text-slate-200' : 'text-slate-700'
-              }`}>
-                {[
-                  { label: 'Global Learners', value: '450+' },
-                  { label: 'Live Sessions', value: 'Daily' },
-                  { label: 'Success Rate', value: '94%' }
-                ].map((stat) => (
-                  <div key={stat.label} className={`rounded-2xl px-4 py-4 backdrop-blur-lg border ${
-                    darkMode ? 'bg-white/5 border-white/10' : 'bg-white/70 border-white/40'
-                  }`}>
-                    <p className="text-2xl font-semibold">{stat.value}</p>
-                    <p className={`text-xs uppercase tracking-[0.25em] mt-2 ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>
-                      {stat.label}
-                    </p>
-                  </div>
-                ))}
               </div>
 
               <div className={`mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 text-center ${
@@ -1215,12 +1192,12 @@ const DeutschLearnerHub = () => {
                     <div className="w-56 h-56 mx-auto mb-6 flex items-center justify-center">
                       <img 
                         src="/logo.jpg" 
-                        alt="DLH Global Academy Logo" 
+                        alt={copy.logoAlt} 
                         className="w-full h-full object-contain drop-shadow-2xl"
                       />
                     </div>
-                    <h3 className={`text-2xl font-serif ${darkMode ? 'text-slate-200' : 'text-slate-800'} mb-2`}>DLH Global Academy</h3>
-                    <p className={`text-sm font-light ${darkMode ? 'text-slate-400' : 'text-slate-500'} tracking-wide`}>Excellence in German Education</p>
+                    <h3 className={`text-2xl font-serif ${darkMode ? 'text-slate-200' : 'text-slate-800'} mb-2`}>{copy.brand}</h3>
+                    <p className={`text-sm font-light ${darkMode ? 'text-slate-400' : 'text-slate-500'} tracking-wide`}>{copy.home.logoTagline}</p>
                   </div>
                 </div>
                 <div className={`rounded-2xl p-6 backdrop-blur-lg border shadow-xl ${
@@ -1230,26 +1207,22 @@ const DeutschLearnerHub = () => {
                 }`}>
                   <div className="flex items-center justify-between mb-4">
                     <div>
-                      <p className={`text-xs uppercase tracking-[0.25em] ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>Next Cohort</p>
-                      <p className={`text-lg font-semibold ${darkMode ? 'text-white' : 'text-slate-900'}`}>Enroll for October</p>
+                      <p className={`text-xs uppercase tracking-[0.25em] ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>{copy.home.cohort.label}</p>
+                      <p className={`text-lg font-semibold ${darkMode ? 'text-white' : 'text-slate-900'}`}>{copy.home.cohort.title}</p>
                     </div>
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-red-500 flex items-center justify-center">
                       <Target className="w-5 h-5 text-white" />
                     </div>
                   </div>
                   <ul className={`space-y-3 text-sm ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>
-                    <li className="flex items-center space-x-3">
-                      <Users className="w-4 h-4 text-amber-500" />
-                      <span>Small groups with expert instructors.</span>
-                    </li>
-                    <li className="flex items-center space-x-3">
-                      <MessageCircle className="w-4 h-4 text-amber-500" />
-                      <span>Daily WhatsApp support and check-ins.</span>
-                    </li>
-                    <li className="flex items-center space-x-3">
-                      <Award className="w-4 h-4 text-amber-500" />
-                      <span>Exam-ready roadmap from A1 to C1.</span>
-                    </li>
+                    {copy.home.cohort.items.map((item, index) => (
+                      <li key={item} className="flex items-center space-x-3">
+                        {index === 0 && <Users className="w-4 h-4 text-amber-500" />}
+                        {index === 1 && <MessageCircle className="w-4 h-4 text-amber-500" />}
+                        {index === 2 && <Award className="w-4 h-4 text-amber-500" />}
+                        <span>{item}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
@@ -1413,15 +1386,14 @@ const DeutschLearnerHub = () => {
                   }`}>
                     <div className="flex items-center justify-between mb-4">
                       <h3 className={`text-xl font-medium ${darkMode ? 'text-white' : 'text-slate-900'}`}>
-                        Module Training (Hören, Lesen, Sprechen, Schreiben)
+                        {copy.courses.moduleTitle}
                       </h3>
                       <span className={`text-sm font-semibold ${darkMode ? 'text-amber-300' : 'text-amber-600'}`}>
-                        KES 3,500
+                        {copy.courses.modulePrice}
                       </span>
                     </div>
                     <p className={`text-sm font-light ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>
-                      Focus on one skill module at any level. Each module (Hören, Lesen, Sprechen, Schreiben) is offered at
-                      <span className="font-medium"> KES 3,500 per module</span>.
+                      {copy.courses.moduleDescription}
                     </p>
                   </div>
 
@@ -1432,20 +1404,20 @@ const DeutschLearnerHub = () => {
                   }`}>
                     <div className="flex items-center justify-between mb-4">
                       <h3 className={`text-xl font-medium ${darkMode ? 'text-white' : 'text-slate-900'}`}>
-                        Prüfungstraining (Exam Preparation)
+                        {copy.courses.examTitle}
                       </h3>
                     </div>
                     <div className={`grid gap-3 text-sm ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>
                       <div className="flex items-center justify-between border-b border-dashed pb-2">
-                        <span>A1 / A2 Exam Prep</span>
-                        <span className={`font-semibold ${darkMode ? 'text-amber-300' : 'text-amber-600'}`}>KES 5,000</span>
+                        <span>{copy.courses.examA1A2}</span>
+                        <span className={`font-semibold ${darkMode ? 'text-amber-300' : 'text-amber-600'}`}>{copy.courses.examA1A2Price}</span>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span>B1 / B2 Exam Prep</span>
-                        <span className={`font-semibold ${darkMode ? 'text-amber-300' : 'text-amber-600'}`}>KES 6,500</span>
+                        <span>{copy.courses.examB1B2}</span>
+                        <span className={`font-semibold ${darkMode ? 'text-amber-300' : 'text-amber-600'}`}>{copy.courses.examB1B2Price}</span>
                       </div>
                       <p className="pt-2 text-xs">
-                        Intensive exam preparation with mock tests, strategy, and feedback.
+                        {copy.courses.examNote}
                       </p>
                     </div>
                   </div>
