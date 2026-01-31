@@ -682,6 +682,52 @@ const DeutschLearnerHub = () => {
                     </div>
                   ))}
                 </div>
+
+                <div className="mt-12 grid gap-6 lg:grid-cols-2">
+                  <div className={`rounded-2xl border p-6 backdrop-blur-lg shadow-xl ${
+                    darkMode 
+                      ? 'bg-slate-900/40 border-slate-700/50' 
+                      : 'bg-white/80 border-slate-200/60'
+                  }`}>
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className={`text-xl font-medium ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+                        Module Training (Hören, Lesen, Sprechen, Schreiben)
+                      </h3>
+                      <span className={`text-sm font-semibold ${darkMode ? 'text-amber-300' : 'text-amber-600'}`}>
+                        KES 3,500
+                      </span>
+                    </div>
+                    <p className={`text-sm font-light ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>
+                      Focus on one skill module at any level. Each module (Hören, Lesen, Sprechen, Schreiben) is offered at
+                      <span className="font-medium"> KES 3,500 per module</span>.
+                    </p>
+                  </div>
+
+                  <div className={`rounded-2xl border p-6 backdrop-blur-lg shadow-xl ${
+                    darkMode 
+                      ? 'bg-slate-900/40 border-slate-700/50' 
+                      : 'bg-white/80 border-slate-200/60'
+                  }`}>
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className={`text-xl font-medium ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+                        Prüfungstraining (Exam Preparation)
+                      </h3>
+                    </div>
+                    <div className={`grid gap-3 text-sm ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>
+                      <div className="flex items-center justify-between border-b border-dashed pb-2">
+                        <span>A1 / A2 Exam Prep</span>
+                        <span className={`font-semibold ${darkMode ? 'text-amber-300' : 'text-amber-600'}`}>KES 5,000</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span>B1 / B2 Exam Prep</span>
+                        <span className={`font-semibold ${darkMode ? 'text-amber-300' : 'text-amber-600'}`}>KES 6,500</span>
+                      </div>
+                      <p className="pt-2 text-xs">
+                        Intensive exam preparation with mock tests, strategy, and feedback.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
