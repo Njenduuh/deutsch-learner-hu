@@ -344,18 +344,40 @@ const DeutschLearnerHub = () => {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div>
+              <div className={`inline-flex items-center space-x-2 px-4 py-2 rounded-full border text-xs uppercase tracking-[0.2em] font-light mb-6 fade-in-up ${
+                darkMode 
+                  ? 'bg-white/5 border-white/10 text-amber-300' 
+                  : 'bg-white/70 border-white/40 text-amber-700'
+              }`}>
+                <Globe className="w-4 h-4" />
+                <span>Online German Academy</span>
+              </div>
               <h1 className={`text-5xl md:text-6xl lg:text-7xl font-serif ${darkMode ? 'text-white' : 'text-slate-900'} mb-8 leading-tight fade-in-up`}>
-                Welcome to DLH Global Academy
+                Learn German with live classes, real guidance, and global support.
               </h1>
               
               <div className={`space-y-6 text-lg font-light ${darkMode ? 'text-slate-300' : 'text-slate-600'} leading-relaxed fade-in-up delay-1`}>
                 <p className={`text-xl ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>
-                  DLH Global Academy is a fully online, global German learning platform you can join from anywhere in the world.
+                  DLH Global Academy is a fully online German learning platform you can join from anywhere in the world.
                 </p>
-                <p>We offer complete German courses, Prüfungstraining, and focused skill classes in Lesen (Reading), Hören (Listening), Schreiben (Writing), and Sprechen (Speaking). Our learning approach allows you to study individually while still interacting with other students, helping you build confidence, fluency, and real communication skills.</p>
-                <p>Beyond language learning, we provide visa interview preparation, including practical guidance on how to confidently answer Embassy interview questions. We also support students in choosing the right Ausbildung programme based on their goals, background, and future plans.</p>
-                <p>With DLH Global Academy, all your German learning needs are brought together in one complete package — language training, exam preparation, and real-world guidance.</p>
-                <p>This is DLH Global Academy. Apply now and start your German journey today.</p>
+                <p>Join complete German courses, intensive Prüfungstraining, and focused skills classes in Lesen, Hören, Schreiben, and Sprechen. Learn at your pace while staying connected with live instruction and community accountability.</p>
+                <p>Go beyond language learning with visa interview preparation, embassy Q&amp;A practice, and tailored support for selecting the right Ausbildung programme for your future.</p>
+              </div>
+
+              <div className={`mt-8 grid gap-4 sm:grid-cols-2 text-sm font-light fade-in-up delay-1 ${
+                darkMode ? 'text-slate-300' : 'text-slate-600'
+              }`}>
+                {[
+                  'Live instructor feedback every session',
+                  'Exam-ready resources and mock tests',
+                  'Visa interview preparation & coaching',
+                  'Career-guided Ausbildung planning'
+                ].map((item) => (
+                  <div key={item} className="flex items-start space-x-3">
+                    <CheckCircle className={`w-5 h-5 mt-0.5 ${darkMode ? 'text-amber-400' : 'text-amber-600'}`} />
+                    <span>{item}</span>
+                  </div>
+                ))}
               </div>
 
               <div className={`mt-8 p-6 rounded-2xl backdrop-blur-lg border fade-in-up delay-2 ${
@@ -384,7 +406,7 @@ const DeutschLearnerHub = () => {
                 </div>
               </div>
 
-              <div className="mt-10">
+              <div className="mt-10 flex flex-wrap gap-4">
                 <button
                   onClick={() => setActivePage('contact')}
                   className="inline-flex items-center space-x-2 bg-gradient-to-r from-amber-500 via-red-500 to-amber-600 hover:from-amber-600 hover:via-red-600 hover:to-amber-700 text-white font-medium px-8 py-4 rounded-full text-base transition-all shadow-xl hover:shadow-2xl hover:scale-105"
@@ -392,25 +414,86 @@ const DeutschLearnerHub = () => {
                   <span>Start Your Journey</span>
                   <ArrowRight size={18} strokeWidth={2} />
                 </button>
+                <button
+                  onClick={() => setActivePage('courses')}
+                  className={`inline-flex items-center space-x-2 px-8 py-4 rounded-full text-base font-medium transition-all border ${
+                    darkMode 
+                      ? 'border-white/20 text-white hover:bg-white/10' 
+                      : 'border-slate-300 text-slate-700 hover:bg-white'
+                  }`}
+                >
+                  <span>View Courses</span>
+                  <BookOpen size={18} strokeWidth={1.8} />
+                </button>
+              </div>
+
+              <div className={`mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 text-center ${
+                darkMode ? 'text-slate-200' : 'text-slate-700'
+              }`}>
+                {[
+                  { label: 'Global Learners', value: '450+' },
+                  { label: 'Live Sessions', value: 'Daily' },
+                  { label: 'Success Rate', value: '94%' }
+                ].map((stat) => (
+                  <div key={stat.label} className={`rounded-2xl px-4 py-4 backdrop-blur-lg border ${
+                    darkMode ? 'bg-white/5 border-white/10' : 'bg-white/70 border-white/40'
+                  }`}>
+                    <p className="text-2xl font-semibold">{stat.value}</p>
+                    <p className={`text-xs uppercase tracking-[0.25em] mt-2 ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>
+                      {stat.label}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
 
             <div className="flex items-center justify-center">
-              <div className={`w-full max-w-md aspect-square rounded-3xl shadow-2xl flex items-center justify-center p-12 backdrop-blur-xl border ${
-                darkMode 
-                  ? 'bg-gradient-to-br from-slate-800/50 to-slate-900/50 border-white/10' 
-                  : 'bg-gradient-to-br from-white/80 to-slate-50/80 border-white/40'
-              }`}>
-                <div className="text-center">
-                  <div className="w-64 h-64 mx-auto mb-6 flex items-center justify-center">
-                    <img 
-                      src="/logo.jpg" 
-                      alt="DLH Global Academy Logo" 
-                      className="w-full h-full object-contain drop-shadow-2xl"
-                    />
+              <div className="w-full max-w-md space-y-6">
+                <div className={`rounded-3xl shadow-2xl flex items-center justify-center p-12 backdrop-blur-xl border ${
+                  darkMode 
+                    ? 'bg-gradient-to-br from-slate-800/50 to-slate-900/50 border-white/10' 
+                    : 'bg-gradient-to-br from-white/80 to-slate-50/80 border-white/40'
+                }`}>
+                  <div className="text-center">
+                    <div className="w-56 h-56 mx-auto mb-6 flex items-center justify-center">
+                      <img 
+                        src="/logo.jpg" 
+                        alt="DLH Global Academy Logo" 
+                        className="w-full h-full object-contain drop-shadow-2xl"
+                      />
+                    </div>
+                    <h3 className={`text-2xl font-serif ${darkMode ? 'text-slate-200' : 'text-slate-800'} mb-2`}>DLH Global Academy</h3>
+                    <p className={`text-sm font-light ${darkMode ? 'text-slate-400' : 'text-slate-500'} tracking-wide`}>Excellence in German Education</p>
                   </div>
-                  <h3 className={`text-2xl font-serif ${darkMode ? 'text-slate-200' : 'text-slate-800'} mb-2`}>DLH Global Academy</h3>
-                  <p className={`text-sm font-light ${darkMode ? 'text-slate-400' : 'text-slate-500'} tracking-wide`}>Excellence in German Education</p>
+                </div>
+                <div className={`rounded-2xl p-6 backdrop-blur-lg border shadow-xl ${
+                  darkMode 
+                    ? 'bg-white/5 border-white/10' 
+                    : 'bg-white/70 border-white/40'
+                }`}>
+                  <div className="flex items-center justify-between mb-4">
+                    <div>
+                      <p className={`text-xs uppercase tracking-[0.25em] ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>Next Cohort</p>
+                      <p className={`text-lg font-semibold ${darkMode ? 'text-white' : 'text-slate-900'}`}>Enroll for October</p>
+                    </div>
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-red-500 flex items-center justify-center">
+                      <Target className="w-5 h-5 text-white" />
+                    </div>
+                  </div>
+                  <ul className={`space-y-3 text-sm ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>
+                    <li className="flex items-center space-x-3">
+                      <Users className="w-4 h-4 text-amber-500" />
+                      <span>Small groups with expert instructors.</span>
+                    </li>
+                    <li className="flex items-center space-x-3">
+                      <MessageCircle className="w-4 h-4 text-amber-500" />
+                      <span>Daily WhatsApp support and check-ins.</span>
+                    </li>
+                    <li className="flex items-center space-x-3">
+                      <Award className="w-4 h-4 text-amber-500" />
+                      <span>Exam-ready roadmap from A1 to C1.</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -598,6 +681,52 @@ const DeutschLearnerHub = () => {
                       </p>
                     </div>
                   ))}
+                </div>
+
+                <div className="mt-12 grid gap-6 lg:grid-cols-2">
+                  <div className={`rounded-2xl border p-6 backdrop-blur-lg shadow-xl ${
+                    darkMode 
+                      ? 'bg-slate-900/40 border-slate-700/50' 
+                      : 'bg-white/80 border-slate-200/60'
+                  }`}>
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className={`text-xl font-medium ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+                        Module Training (Hören, Lesen, Sprechen, Schreiben)
+                      </h3>
+                      <span className={`text-sm font-semibold ${darkMode ? 'text-amber-300' : 'text-amber-600'}`}>
+                        KES 3,500
+                      </span>
+                    </div>
+                    <p className={`text-sm font-light ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>
+                      Focus on one skill module at any level. Each module (Hören, Lesen, Sprechen, Schreiben) is offered at
+                      <span className="font-medium"> KES 3,500 per module</span>.
+                    </p>
+                  </div>
+
+                  <div className={`rounded-2xl border p-6 backdrop-blur-lg shadow-xl ${
+                    darkMode 
+                      ? 'bg-slate-900/40 border-slate-700/50' 
+                      : 'bg-white/80 border-slate-200/60'
+                  }`}>
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className={`text-xl font-medium ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+                        Prüfungstraining (Exam Preparation)
+                      </h3>
+                    </div>
+                    <div className={`grid gap-3 text-sm ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>
+                      <div className="flex items-center justify-between border-b border-dashed pb-2">
+                        <span>A1 / A2 Exam Prep</span>
+                        <span className={`font-semibold ${darkMode ? 'text-amber-300' : 'text-amber-600'}`}>KES 5,000</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span>B1 / B2 Exam Prep</span>
+                        <span className={`font-semibold ${darkMode ? 'text-amber-300' : 'text-amber-600'}`}>KES 6,500</span>
+                      </div>
+                      <p className="pt-2 text-xs">
+                        Intensive exam preparation with mock tests, strategy, and feedback.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
